@@ -1,0 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100%;
+  background-color: #05060b;
+}
+
+/* Animated background for the whole page */
+.bg-animated {
+  position: relative;
+  background: radial-gradient(circle at top left, rgba(124, 58, 237, 0.25), transparent 45%),
+    radial-gradient(circle at top right, rgba(34, 211, 238, 0.18), transparent 40%),
+    radial-gradient(circle at 20% 60%, rgba(124, 58, 237, 0.18), transparent 35%),
+    #05060b;
+  background-size: 200% 200%;
+  animation: gradientShift 18s ease infinite;
+  overflow-x: hidden;
+}
+
+.bg-animated::before {
+  content: "";
+  position: fixed;
+  inset: -20%;
+  background: linear-gradient(120deg, rgba(124, 58, 237, 0.22), rgba(34, 211, 238, 0.18), transparent 70%);
+  filter: blur(80px);
+  opacity: 0.65;
+  z-index: 0;
+  animation: gradientShift 28s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.glass-card {
+  background: rgba(8, 12, 24, 0.65);
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  box-shadow: 0 0 30px rgba(124, 58, 237, 0.12);
+  backdrop-filter: blur(16px);
+}
+
+.nav-blur {
+  backdrop-filter: blur(18px);
+  background: rgba(5, 6, 11, 0.75);
+  border-bottom: 1px solid rgba(124, 58, 237, 0.2);
+}
+
+.glow-border {
+  position: relative;
+}
+
+.glow-border::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  border: 1px solid rgba(34, 211, 238, 0.35);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.glow-border:hover::after {
+  opacity: 1;
+}
+
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-ripple::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.35) 0%, transparent 60%);
+  opacity: 0;
+  transform: scale(0);
+}
+
+.btn-ripple:active::after {
+  animation: ripple 0.6s ease-out;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.neon-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.6), rgba(34, 211, 238, 0.6), transparent);
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
